@@ -13,6 +13,12 @@ app.use(cors()); // Enables Cross-Origin Resource Sharing
 app.use(express.json()); // Parses incoming requests with JSON payloads
 app.use(express.urlencoded({ extended: true })); // Parses URL-encoded payloads
 
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+  });
+});
+
 // --- Sample Route ---
 app.get("/", (req, res) => {
   res.status(200).json({
