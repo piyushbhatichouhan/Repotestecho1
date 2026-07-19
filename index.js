@@ -5,7 +5,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 
 // --- Global Middleware ---
 app.use(helmet()); // Sets security HTTP headers
