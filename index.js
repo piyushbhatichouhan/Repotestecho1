@@ -1,34 +1,11 @@
 const express = require("express");
-const axios = require("axios");
-
+const path = require("path");
 const app = express();
+const PORT = 3001;
 
-const PORT = process.env.PORT || 3001;
-
-const API_URL = process.env.API_URL;
-
-app.get("/", (req, res) => {
-  res.json({
-    success: true,
-    message: "Echo deployment test",
-    api: API_URL,
-  });
-});
-
-app.get("/joke", async (req, res) => {
-  try {
-    const response = await axios.get(API_URL);
-
-    res.json(response.data);
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      error: err.message,
-    });
-  }
-});
+// Serve all static files from the 'public' folder
+app.use(express.static(path.join(__dirname, "public")));
 
 app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-  console.log(`API_URL = ${API_URL}`);
+  console.log(`Server is running at http://localhost:${PORT}`);
 });
